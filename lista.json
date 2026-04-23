@@ -1,0 +1,27 @@
+[
+{
+"titulo": "Clase Coche (Atributos y Métodos)",
+"emoticono": "🚗",
+"url": "coche.html"
+},
+{
+"titulo": "Mundo Mágico de Harry Potter (Herencia)",
+"emoticono": "🧙‍♂️",
+"url": "harrypotter.html"
+},
+{
+"titulo": "Gestión de Biblioteca (Encapsulamiento)",
+"emoticono": "📚",
+"url": "biblioteca.html"
+},
+{
+"titulo": "Simulador de Zoológico (Polimorfismo)",
+"emoticono": "🦁",
+"url": "zoologico.html"
+},
+{
+"titulo": "Sistema Bancario (Abstracción)",
+"emoticono": "💰",
+"url": "banco.html"
+}
+]

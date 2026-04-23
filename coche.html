@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>POO JS - Coches</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .box {
+            background: #f4f4f4;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🚗 Ejemplo POO en JavaScript</h1>
+
+<div id="info"></div>
+<ul id="lista"></ul>
+
+<script>
+// ===============================
+// CLASE PRINCIPAL
+// ===============================
+class Coche {
+
+    #matricula; // propiedad privada
+
+    constructor(marca, color, matricula) {
+        this.marca = marca;
+        this.color = color;
+        this.velocidad = 0;
+        this.#matricula = matricula;
+        this._combustible = 0; // protegido (convención)
+    }
+
+    acelerar(cantidad) {
+        this.velocidad += cantidad;
+    }
+
+    mostrarInfo() {
+        return `
+        <li class="box">
+            Marca: ${this.marca} <br>
+            Color: ${this.color} <br>
+            Velocidad: ${this.velocidad} <br>
+            Combustible: ${this._combustible}
+        </li>`;
+    }
+
+    getMatricula() {
+        return this.#matricula;
+    }
+
+    getCombustible() {
+        if (this._combustible === 0) {
+            return "Batería Cargada";
+        } else if (this._combustible <= 50) {
+            return "Batería ta medio llena";
+        } else if (this._combustible < 100) {
+            return "Batería Cargada";
+        } else if (this._combustible === 100) {
+            return "Tas atope de Power!";
+        } else {
+            return "Nivel desconocido";
+        }
+    }
+}
+
+// ===============================
+// HERENCIA
+// ===============================
+class CocheElectrico extends Coche {
+    cargarBateria(nivel) {
+        this._combustible = nivel;
+    }
+}
+
+// ===============================
+// CREACIÓN DE OBJETOS
+// ===============================
+const miCoche = new Coche("Opel", "Rojo", "ABC123");
+const cocheJorge = new Coche("Honda", "Azul", "XYZ789");
+const cochePa = new Coche("Toyota", "Blanco", "DEF456");
+
+// Modificaciones
+miCoche.color = "Negro";
+cocheJorge.color = "Verde";
+cochePa.marca = "Ford";
+
+// Métodos
+miCoche.acelerar(30);
+
+// ===============================
+// COCHE ELÉCTRICO
+// ===============================
+const cocheElectrico = new CocheElectrico("Tesla", "Blanco", "ELEC123");
+cocheElectrico.cargarBateria(25);
+
+// ===============================
+// MOSTRAR EN PANTALLA
+// ===============================
+const info = document.getElementById("info");
+const lista = document.getElementById("lista");
+
+// Mostrar datos básicos
+info.innerHTML += `<div class="box"><strong>Marca mi coche:</strong> ${miCoche.marca}</div>`;
+
+// Mostrar matrículas
+info.innerHTML += `<div class="box">${miCoche.getMatricula()}</div>`;
+info.innerHTML += `<div class="box">${cocheJorge.getMatricula()}</div>`;
+info.innerHTML += `<div class="box">${cochePa.getMatricula()}</div>`;
+
+// Mostrar lista coches
+lista.innerHTML += miCoche.mostrarInfo();
+lista.innerHTML += cocheJorge.mostrarInfo();
+lista.innerHTML += cochePa.mostrarInfo();
+
+// Mostrar coche eléctrico
+lista.innerHTML += cocheElectrico.mostrarInfo();
+
+info.innerHTML += `<div class="box">Matrícula eléctrico: ${cocheElectrico.getMatricula()}</div>`;
+info.innerHTML += `<div class="box">Estado batería: ${cocheElectrico.getCombustible()}</div>`;
+
+</script>
+
+</body>
+</html>
